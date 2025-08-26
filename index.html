@@ -1,9 +1,50 @@
-# 作業フォルダを作る
-mkdir my-site && cd my-site
-# 初期ファイルを作る（後でコピペ）
-git init
-git add .
-git commit -m "initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
-git push -u origin main
+<!-- index.html -->
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yonemura Fragrance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Yonemura Fragrance</h1>
+    <p class="tag">香りで心を動かす — また来たいと思わせる体験を</p>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>空間を、記憶に残る体験に。</h2>
+      <p>法人向け大型ディフューザー ／ 小分け香水サブスク ／ 福利厚生ソリューション</p>
+      <a class="cta" href="#contact">お問い合せ</a>
+    </section>
+
+    <section id="features" class="cards">
+      <article class="card">
+        <h3>法人向けディフューザー</h3>
+        <p>ホテル・葬祭・オフィスでの導入実績を作ります。</p>
+      </article>
+      <article class="card">
+        <h3>サブスク小分け香水</h3>
+        <p>試してから買える、体験重視のサブスク。</p>
+      </article>
+      <article class="card">
+        <h3>福利厚生×香り</h3>
+        <p>香りで従業員のウェルビーイング向上を実現。</p>
+      </article>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <p>メール: <a href="mailto:info@example.com">info@example.com</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© Yonemura Fragrance</small>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
