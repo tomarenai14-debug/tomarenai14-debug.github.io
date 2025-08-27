@@ -1,52 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yonemura Fragrance</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
+
+  <!-- ヘッダー -->
+  <header>
     <h1>Yonemura Fragrance</h1>
-    <p class="tag">香りで心を動かす — また来たいと思わせる体験を</p>
-    <a class="cta-header" href="#contact">お問い合わせ</a>
+    <p>香りで心を動かす — また来たいと思わせる体験を</p>
+    <a href="#contact" class="cta">お問い合わせ</a>
   </header>
 
-  <main class="container">
-    <!-- Hero Section -->
-    <section class="hero">
-      <h2>空間を、記憶に残る体験に。</h2>
-      <p>法人向け大型ディフューザー / 小分け香水サブスク / 福利厚生ソリューション</p>
-      <a class="cta" href="#contact">お問い合わせ</a>
-    </section>
+  <!-- サービス紹介 -->
+  <section id="services">
+    <h2>サービス</h2>
+    <div class="service-card">
+      <h3>法人向けディフューザー</h3>
+      <p>ホテル・葬祭・オフィスでの導入実績を作ります。</p>
+    </div>
+    <div class="service-card">
+      <h3>サブスク小分け香水</h3>
+      <p>試してから買える、体験重視のサブスク。</p>
+    </div>
+    <div class="service-card">
+      <h3>福利厚生×香り</h3>
+      <p>香りで従業員のウェルビーイング向上を実現。</p>
+    </div>
+  </section>
 
-    <!-- Features Section -->
-    <section id="features" class="cards">
-      <article class="card">
-        <h3>法人向けディフューザー</h3>
-        <p>ホテル・葬祭・オフィスでの導入実績を作ります。</p>
-      </article>
-      <article class="card">
-        <h3>サブスク小分け香水</h3>
-        <p>試してから買える、体験重視のサブスク。</p>
-      </article>
-      <article class="card">
-        <h3>福利厚生×香り</h3>
-        <p>香りで従業員のウェルビーイング向上を実現。</p>
-      </article>
-    </section>
+  <!-- 導入事例 -->
+  <section id="cases">
+    <h2>導入事例</h2>
+    <div class="case">
+      <h3>ホテルでの導入</h3>
+      <p>高級ホテルでの香り導入事例をご紹介します。</p>
+    </div>
+    <div class="case">
+      <h3>オフィスでの導入</h3>
+      <p>オフィス環境での香り導入事例をご紹介します。</p>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <h2>お問い合わせ</h2>
-      <p>お気軽にご連絡ください。</p>
-      <p>メール: <a href="mailto:info@example.com">info@example.com</a></p>
-    </section>
-  </main>
+  <!-- お問い合わせ -->
+  <section id="contact">
+    <h2>お問い合わせ</h2>
+    <p>メール: <a href="mailto:info@yonemura.com">info@yonemura.com</a></p>
+  </section>
 
-  <footer class="site-footer">
-    <small>© Yonemura Fragrance</small>
+  <!-- フッター -->
+  <footer>
+    <p>© 2025 Yonemura Fragrance</p>
   </footer>
 
   <script src="script.js"></script>
