@@ -1,82 +1,33 @@
-/* Reset & base */
+/* 全体設定 */
 body {
   font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
   padding: 0;
-  background: #fff;
-  color: #111;
+  background-color: #000;
+  color: #fff;
 }
 
-/* Header */
-.site-header {
+/* ヘッダー */
+header {
   text-align: center;
-  padding: 2em 1em;
-  background: #000;
-  color: #f5c500;
-  position: relative;
+  padding: 3em 1em;
+  background-color: #000;
 }
 
-.site-header h1 {
-  font-size: 2.5em;
+header h1 {
+  font-size: 3em;
   margin: 0;
 }
 
-.tag {
-  color: #f5c500;
+header p {
+  font-size: 1.2em;
   margin: 0.5em 0;
-}
-
-.cta-header {
-  background-color: #f5c500;
-  color: #000;
-  padding: 0.8em 1.5em;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.cta-header:hover {
-  background-color: #fff;
-  transform: scale(1.05);
-}
-
-/* Container */
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2em 1em;
-}
-
-/* Hero */
-.hero {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease;
-  text-align: center;
-  margin-bottom: 3em;
-}
-
-.hero.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hero h2 {
-  font-size: 2em;
-  margin-bottom: 0.5em;
-}
-
-.hero p {
-  font-size: 1.1em;
-  margin-bottom: 1em;
 }
 
 .cta {
   background-color: #f5c500;
   color: #000;
   padding: 1em 2em;
-  display: inline-block;
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -84,67 +35,54 @@ body {
 
 .cta:hover {
   background-color: #fff;
+  color: #f5c500;
   transform: scale(1.05);
 }
 
-/* Cards */
-.cards {
+/* サービス紹介 */
+#services {
   display: flex;
-  gap: 2em;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 2em 1em;
+  background-color: #111;
 }
 
-.card {
-  background: #000;
-  color: #f5c500;
+.service-card {
+  background-color: #222;
   padding: 2em;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-  width: 300px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
-}
-
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.card h3 {
-  margin-top: 0;
-  margin-bottom: 0.5em;
-}
-
-.card p {
-  margin: 0;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-/* Contact */
-.contact {
+  border-radius: 10px;
+  width: 30%;
   text-align: center;
-  padding: 3em 0;
+  transition: all 0.3s ease;
 }
 
-.contact a {
-  color: #f5c500;
-  text-decoration: none;
+.service-card:hover {
+  background-color: #333;
+  transform: translateY(-5px);
 }
 
-.contact a:hover {
-  text-decoration: underline;
+/* 導入事例 */
+#cases {
+  padding: 2em 1em;
+  background-color: #111;
 }
 
-/* Footer */
-.site-footer {
+.case {
+  background-color: #222;
+  padding: 2em;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+/* お問い合わせ */
+#contact {
+  text-align: center;
+  padding: 2em 1em;
+  background-color: #000;
+}
+
+footer {
   text-align: center;
   padding: 1em 0;
-  background: #000;
-  color: #f5c500;
+  background-color: #111;
 }
