@@ -14,503 +14,7 @@
   <meta property="og:description" content="香りで心を動かす — また来たいと思わせる体験を提供するフレグランスビジネスのエキスパート">
   
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary-color: #2c3e50;
-      --secondary-color: #3498db;
-      --accent-color: #e74c3c;
-      --light-gray: #ecf0f1;
-      --dark-gray: #34495e;
-      --white: #ffffff;
-      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --shadow-light: 0 10px 30px rgba(0,0,0,0.1);
-      --shadow-heavy: 0 20px 60px rgba(0,0,0,0.2);
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: var(--primary-color);
-      overflow-x: hidden;
-      background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-    }
-
-    /* Loading Animation */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: var(--gradient-primary);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
-
-    .loading-spinner {
-      width: 60px;
-      height: 60px;
-      border: 4px solid rgba(255,255,255,0.3);
-      border-left: 4px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 1rem 0;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-light);
-    }
-
-    nav.scrolled {
-      padding: 0.5rem 0;
-      background: rgba(255,255,255,0.98);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 2rem;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--primary-color);
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .nav-links a:hover {
-      color: var(--secondary-color);
-    }
-
-    .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--secondary-color);
-      animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    /* Mobile Menu */
-    .mobile-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .mobile-toggle span {
-      width: 25px;
-      height: 3px;
-      background: var(--primary-color);
-      margin: 3px 0;
-      transition: 0.3s;
-    }
-
-    /* Main Container */
-    .app-container {
-      margin-top: 80px;
-    }
-
-    .page-section {
-      display: none;
-      min-height: 100vh;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease;
-    }
-
-    .page-section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Hero Section */
-    .hero {
-      background: var(--gradient-primary);
-      color: white;
-      padding: 8rem 2rem 6rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.12)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
-      animation: float 20s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      animation: fadeInUp 1s ease 0.2s both;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-      animation: fadeInUp 1s ease 0.4s both;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      padding: 1rem 2rem;
-      text-decoration: none;
-      border-radius: 50px;
-      border: 2px solid rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
-      font-weight: 600;
-      animation: fadeInUp 1s ease 0.6s both;
-      backdrop-filter: blur(10px);
-    }
-
-    .cta-button:hover {
-      background: rgba(255,255,255,0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Services Section */
-    .services {
-      padding: 6rem 2rem;
-      background: white;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: var(--primary-color);
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 4px;
-      background: var(--gradient-secondary);
-      border-radius: 2px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow-light);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-primary);
-      transition: left 0.5s ease;
-      z-index: 1;
-      opacity: 0.1;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-heavy);
-    }
-
-    .service-card:hover::before {
-      left: 0;
-    }
-
-    .service-card h3 {
-      position: relative;
-      z-index: 2;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-    }
-
-    .service-card p {
-      position: relative;
-      z-index: 2;
-      color: var(--dark-gray);
-      line-height: 1.7;
-    }
-
-    /* Cases Section */
-    .cases {
-      padding: 6rem 2rem;
-      background: var(--light-gray);
-    }
-
-    .cases-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 3rem;
-    }
-
-    .case-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: var(--shadow-light);
-      transition: all 0.4s ease;
-    }
-
-    .case-card:hover {
-      transform: scale(1.03);
-      box-shadow: var(--shadow-heavy);
-    }
-
-    .case-image {
-      height: 200px;
-      background: var(--gradient-secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 3rem;
-    }
-
-    .case-content {
-      padding: 2rem;
-    }
-
-    .case-content h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-    }
-
-    /* Contact Section */
-    .contact {
-      padding: 6rem 2rem;
-      background: var(--primary-color);
-      color: white;
-      text-align: center;
-    }
-
-    .contact-content {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact a {
-      color: var(--secondary-color);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .contact a:hover {
-      color: white;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark-gray);
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    /* Scroll Animations */
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
-    }
-
-    .animate-on-scroll.animated {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        padding: 1rem;
-        box-shadow: var(--shadow-light);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .mobile-toggle {
-        display: flex;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .services-grid,
-      .cases-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Particle Background */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: rgba(52, 152, 219, 0.3);
-      border-radius: 50%;
-      animation: float-particle 15s infinite linear;
-    }
-
-    @keyframes float-particle {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Page Transition Effects */
-    .page-transition {
-      animation: pageSlideIn 0.6s ease;
-    }
-
-    @keyframes pageSlideIn {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Loading Screen -->
@@ -556,15 +60,18 @@
         <div class="container">
           <h2 class="section-title animate-on-scroll">私たちのサービス</h2>
           <div class="services-grid">
-            <div class="service-card animate-on-scroll">
+            <div class="service-card animate-on-scroll" data-service="diffuser">
+              <div class="service-icon">🏢</div>
               <h3>法人向けディフューザー</h3>
               <p>ホテル・葬祭・オフィスでの導入実績を作ります。空間の印象を劇的に変える香りの力で、お客様の記憶に残る体験を創出します。</p>
             </div>
-            <div class="service-card animate-on-scroll">
+            <div class="service-card animate-on-scroll" data-service="subscription">
+              <div class="service-icon">💝</div>
               <h3>サブスク小分け香水</h3>
               <p>試してから買える、体験重視のサブスクリプション。月替わりで新しい香りと出会える、革新的なサービスです。</p>
             </div>
-            <div class="service-card animate-on-scroll">
+            <div class="service-card animate-on-scroll" data-service="welfare">
+              <div class="service-icon">🌟</div>
               <h3>福利厚生×香り</h3>
               <p>香りで従業員のウェルビーイング向上を実現。ストレス軽減と生産性向上を科学的にサポートします。</p>
             </div>
@@ -585,16 +92,49 @@
         <div class="container">
           <div class="services-grid">
             <div class="service-card animate-on-scroll">
-              <h3>🏢 法人向けディフューザー</h3>
-              <p>・ホテルのロビー空間演出<br>・オフィスの集中力向上<br>・葬祭場での心の安らぎ提供<br>・小売店での購買意欲促進</p>
+              <div class="service-icon">🏢</div>
+              <h3>法人向けディフューザー</h3>
+              <div class="service-details">
+                <ul>
+                  <li>ホテルのロビー空間演出</li>
+                  <li>オフィスの集中力向上</li>
+                  <li>葬祭場での心の安らぎ提供</li>
+                  <li>小売店での購買意欲促進</li>
+                </ul>
+                <div class="price-info">
+                  <p>月額 ¥50,000〜</p>
+                </div>
+              </div>
             </div>
             <div class="service-card animate-on-scroll">
-              <h3>💝 サブスク小分け香水</h3>
-              <p>・月額制の香水体験サービス<br>・5ml小分けで気軽にお試し<br>・パーソナライズされた推奨<br>・フルサイズ購入前の体験</p>
+              <div class="service-icon">💝</div>
+              <h3>サブスク小分け香水</h3>
+              <div class="service-details">
+                <ul>
+                  <li>月額制の香水体験サービス</li>
+                  <li>5ml小分けで気軽にお試し</li>
+                  <li>パーソナライズされた推奨</li>
+                  <li>フルサイズ購入前の体験</li>
+                </ul>
+                <div class="price-info">
+                  <p>月額 ¥2,980〜</p>
+                </div>
+              </div>
             </div>
             <div class="service-card animate-on-scroll">
-              <h3>🌟 福利厚生×香り</h3>
-              <p>・従業員向け香りプログラム<br>・ストレス軽減効果<br>・職場環境の改善<br>・生産性向上サポート</p>
+              <div class="service-icon">🌟</div>
+              <h3>福利厚生×香り</h3>
+              <div class="service-details">
+                <ul>
+                  <li>従業員向け香りプログラム</li>
+                  <li>ストレス軽減効果</li>
+                  <li>職場環境の改善</li>
+                  <li>生産性向上サポート</li>
+                </ul>
+                <div class="price-info">
+                  <p>要相談</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -617,6 +157,16 @@
               <div class="case-content">
                 <h3>高級ホテルでの導入</h3>
                 <p>都心部の5つ星ホテルにて、ロビーエリアに専用ディフューザーを設置。来館者のリピート率が25%向上し、顧客満足度スコアも大幅に改善されました。</p>
+                <div class="case-results">
+                  <div class="result-item">
+                    <span class="result-number">25%</span>
+                    <span class="result-label">リピート率向上</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="result-number">4.8</span>
+                    <span class="result-label">満足度スコア</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="case-card animate-on-scroll">
@@ -624,6 +174,16 @@
               <div class="case-content">
                 <h3>オフィスでの導入</h3>
                 <p>IT企業のオープンオフィスにて、集中力向上を目的とした香り導入。従業員のストレスレベル低下と、クリエイティブタスクのパフォーマンス向上を実現。</p>
+                <div class="case-results">
+                  <div class="result-item">
+                    <span class="result-number">30%</span>
+                    <span class="result-label">ストレス軽減</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="result-number">15%</span>
+                    <span class="result-label">生産性向上</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -634,13 +194,47 @@
     <!-- Contact Page -->
     <div class="page-section" id="contact">
       <section class="contact">
-        <div class="contact-content">
-          <h2 class="section-title">お問い合わせ</h2>
-          <p>香りの力でビジネスを変革しませんか？<br>お気軽にご相談ください。</p>
-          <br>
-          <p>メール: <a href="mailto:thomas41.perfume@gmail.com">thomas41.perfume@gmail.com</a></p>
-          <br>
-          <p>営業時間: 平日 9:00-18:00</p>
+        <div class="container">
+          <div class="contact-content">
+            <h2 class="section-title">お問い合わせ</h2>
+            <p>香りの力でビジネスを変革しませんか？<br>お気軽にご相談ください。</p>
+            
+            <div class="contact-form-container">
+              <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                  <label for="name">お名前</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">メールアドレス</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="company">会社名</label>
+                  <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                  <label for="service">ご興味のあるサービス</label>
+                  <select id="service" name="service">
+                    <option value="">選択してください</option>
+                    <option value="diffuser">法人向けディフューザー</option>
+                    <option value="subscription">サブスク小分け香水</option>
+                    <option value="welfare">福利厚生×香り</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="message">お問い合わせ内容</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">送信する</button>
+              </form>
+            </div>
+            
+            <div class="contact-info">
+              <p>メール: <a href="mailto:thomas41.perfume@gmail.com">thomas41.perfume@gmail.com</a></p>
+              <p>営業時間: 平日 9:00-18:00</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -649,656 +243,11 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Yonemura Fragrance. All rights reserved.</p>
+    <div class="container">
+      <p>© 2025 Yonemura Fragrance. All rights reserved.</p>
+    </div>
   </footer>
 
-  <script>
-    // Application State Management
-    class FragranceApp {
-      constructor() {
-        this.currentPage = 'home';
-        this.isLoading = true;
-        this.init();
-      }
-
-      init() {
-        this.setupEventListeners();
-        this.createParticles();
-        this.setupScrollAnimations();
-        this.simulateLoading();
-      }
-
-      // Loading Screen Management
-      simulateLoading() {
-        setTimeout(() => {
-          const loadingScreen = document.getElementById('loadingScreen');
-          loadingScreen.style.opacity = '0';
-          setTimeout(() => {
-            loadingScreen.style.display = 'none';
-            this.isLoading = false;
-            this.animatePageLoad();
-          }, 500);
-        }, 1500);
-      }
-
-      animatePageLoad() {
-        const activeSection = document.querySelector('.page-section.active');
-        activeSection.style.animation = 'fadeInUp 0.8s ease';
-      }
-
-      // Navigation System (SPA)
-      setupEventListeners() {
-        // Navigation clicks
-        document.addEventListener('click', (e) => {
-          if (e.target.hasAttribute('data-route')) {
-            e.preventDefault();
-            const route = e.target.getAttribute('data-route');
-            this.navigateTo(route);
-          }
-        });
-
-        // Mobile menu toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-          const navbar = document.getElementById('navbar');
-          if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-          } else {
-            navbar.classList.remove('scrolled');
-          }
-        });
-
-        // Browser back/forward buttons
-        window.addEventListener('popstate', () => {
-          const path = window.location.hash.slice(1) || 'home';
-          this.navigateTo(path, false);
-        });
-      }
-
-      // SPA Navigation
-      navigateTo(page, updateHistory = true) {
-        if (this.isLoading) return;
-        
-        // Update active nav link
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.remove('active');
-        });
-        document.querySelector(`[data-route="${page}"]`).classList.add('active');
-
-        // Page transition
-        const currentSection = document.querySelector('.page-section.active');
-        const targetSection = document.getElementById(page);
-
-        if (currentSection && targetSection && currentSection !== targetSection) {
-          // Fade out current page
-          currentSection.style.opacity = '0';
-          currentSection.style.transform = 'translateX(-50px)';
-          
-          setTimeout(() => {
-            currentSection.classList.remove('active');
-            targetSection.classList.add('active');
-            
-            // Fade in new page
-            setTimeout(() => {
-              targetSection.style.opacity = '1';
-              targetSection.style.transform = 'translateX(0)';
-              targetSection.classList.add('page-transition');
-              
-              // Trigger scroll animations for new page
-              this.triggerScrollAnimations();
-            }, 50);
-          }, 300);
-        }
-
-        // Update URL
-        if (updateHistory) {
-          history.pushState(null, null, `#${page}`);
-        }
-
-        this.currentPage = page;
-      }
-
-      // Particle System
-      createParticles() {
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
-
-        for (let i = 0; i < particleCount; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          particle.style.left = Math.random() * 100 + '%';
-          particle.style.animationDelay = Math.random() * 15 + 's';
-          particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-          particlesContainer.appendChild(particle);
-        }
-      }
-
-      // Scroll Animations
-      setupScrollAnimations() {
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animated');
-            }
-          });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-          observer.observe(el);
-        });
-      }
-
-      triggerScrollAnimations() {
-        // Re-trigger animations for newly visible page
-        setTimeout(() => {
-          const activeSection = document.querySelector('.page-section.active');
-          const animatedElements = activeSection.querySelectorAll('.animate-on-scroll');
-          
-          animatedElements.forEach((el, index) => {
-            setTimeout(() => {
-              el.classList.add('animated');
-            }, index * 100);
-          });
-        }, 100);
-      }
-
-      // Enhanced Service Card Interactions
-      setupServiceCardAnimations() {
-        document.querySelectorAll('.service-card').forEach(card => {
-          card.addEventListener('mouseenter', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const ripple = document.createElement('div');
-            ripple.style.cssText = `
-              position: absolute;
-              width: 10px;
-              height: 10px;
-              background: rgba(52, 152, 219, 0.3);
-              border-radius: 50%;
-              transform: scale(0);
-              animation: ripple 0.6s ease-out;
-              left: ${x}px;
-              top: ${y}px;
-              pointer-events: none;
-            `;
-            
-            card.appendChild(ripple);
-            
-            setTimeout(() => {
-              ripple.remove();
-            }, 600);
-          });
-        });
-      }
-
-      // Dynamic Content Loading
-      loadDynamicContent() {
-        // Simulate API calls for dynamic content
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve({
-              services: [
-                { title: '新サービス', description: '最新の香りソリューション' }
-              ]
-            });
-          }, 1000);
-        });
-      }
-    }
-
-    // Initialize Application
-    document.addEventListener('DOMContentLoaded', () => {
-      const app = new FragranceApp();
-      
-      // Add ripple animation styles
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes ripple {
-          to {
-            transform: scale(40);
-            opacity: 0;
-          }
-        }
-      `;
-      document.head.appendChild(style);
-
-      // Setup enhanced interactions
-      setTimeout(() => {
-        app.setupServiceCardAnimations();
-      }, 2000);
-
-      // Handle initial route
-      const initialRoute = window.location.hash.slice(1) || 'home';
-      app.navigateTo(initialRoute, false);
-    });
-
-    // Advanced Performance Optimizations
-    
-    // Lazy Loading Images
-    const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.classList.add('loaded');
-          imageObserver.unobserve(img);
-        }
-      });
-    });
-
-    // Smooth Scrolling Enhancement
-    const smoothScroll = (target) => {
-      const element = document.querySelector(target);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    };
-
-    // Advanced Form Validation (for contact)
-    class FormValidator {
-      constructor(formId) {
-        this.form = document.getElementById(formId);
-        this.init();
-      }
-
-      init() {
-        if (!this.form) return;
-        
-        this.form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          this.validateForm();
-        });
-      }
-
-      validateForm() {
-        const formData = new FormData(this.form);
-        const errors = [];
-
-        // Email validation
-        const email = formData.get('email');
-        if (!this.isValidEmail(email)) {
-          errors.push('有効なメールアドレスを入力してください');
-        }
-
-        if (errors.length === 0) {
-          this.submitForm(formData);
-        } else {
-          this.showErrors(errors);
-        }
-      }
-
-      isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      }
-
-      submitForm(formData) {
-        // Simulate form submission
-        this.showSuccess('お問い合わせありがとうございます！');
-      }
-
-      showErrors(errors) {
-        // Display validation errors
-        console.log('Validation errors:', errors);
-      }
-
-      showSuccess(message) {
-        // Display success message
-        console.log('Success:', message);
-      }
-    }
-
-    // Advanced Animation Controller
-    class AnimationController {
-      constructor() {
-        this.animations = new Map();
-        this.init();
-      }
-
-      init() {
-        this.setupScrollTriggers();
-        this.setupHoverAnimations();
-        this.setupPageTransitions();
-      }
-
-      setupScrollTriggers() {
-        const sections = document.querySelectorAll('.page-section');
-        
-        sections.forEach(section => {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                this.animateSection(entry.target);
-              }
-            });
-          }, { threshold: 0.3 });
-          
-          observer.observe(section);
-        });
-      }
-
-      animateSection(section) {
-        const elements = section.querySelectorAll('.animate-on-scroll');
-        elements.forEach((el, index) => {
-          setTimeout(() => {
-            el.style.animation = `fadeInUp 0.8s ease ${index * 0.1}s both`;
-          }, index * 100);
-        });
-      }
-
-      setupHoverAnimations() {
-        document.querySelectorAll('.service-card, .case-card').forEach(card => {
-          card.addEventListener('mouseenter', () => {
-            this.createFloatingElements(card);
-          });
-        });
-      }
-
-      createFloatingElements(container) {
-        for (let i = 0; i < 3; i++) {
-          const float = document.createElement('div');
-          float.style.cssText = `
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(52, 152, 219, 0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: floatUp 2s ease-out forwards;
-            left: ${Math.random() * 100}%;
-            top: 100%;
-            z-index: 10;
-          `;
-          
-          container.style.position = 'relative';
-          container.appendChild(float);
-          
-          setTimeout(() => float.remove(), 2000);
-        }
-      }
-
-      setupPageTransitions() {
-        // Advanced page transition effects
-        const style = document.createElement('style');
-        style.textContent = `
-          @keyframes floatUp {
-            to {
-              transform: translateY(-100px);
-              opacity: 0;
-            }
-          }
-          
-          .page-transition-slide {
-            animation: slideFromRight 0.6s ease;
-          }
-          
-          @keyframes slideFromRight {
-            from {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-            to {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
-        `;
-        document.head.appendChild(style);
-      }
-    }
-
-    // Data Management System
-    class DataManager {
-      constructor() {
-        this.cache = new Map();
-        this.apiEndpoints = {
-          services: '/api/services',
-          cases: '/api/cases',
-          contact: '/api/contact'
-        };
-      }
-
-      async fetchData(endpoint) {
-        if (this.cache.has(endpoint)) {
-          return this.cache.get(endpoint);
-        }
-
-        // Simulate API call with mock data
-        const mockData = await this.getMockData(endpoint);
-        this.cache.set(endpoint, mockData);
-        return mockData;
-      }
-
-      async getMockData(endpoint) {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            const data = {
-              '/api/services': [
-                {
-                  id: 1,
-                  title: '法人向けディフューザー',
-                  description: 'プロフェッショナル向けソリューション',
-                  features: ['24時間対応', '保守サービス', 'カスタマイズ可能']
-                }
-              ],
-              '/api/cases': [
-                {
-                  id: 1,
-                  title: 'ホテル導入事例',
-                  result: 'リピート率25%向上',
-                  details: '詳細な効果測定レポート'
-                }
-              ]
-            };
-            resolve(data[endpoint] || []);
-          }, 300);
-        });
-      }
-    }
-
-    // Enhanced UI Components
-    class UIComponents {
-      static createModal(content) {
-        const modal = document.createElement('div');
-        modal.style.cssText = `
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.8);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 10000;
-          animation: fadeIn 0.3s ease;
-        `;
-        
-        const modalContent = document.createElement('div');
-        modalContent.style.cssText = `
-          background: white;
-          padding: 2rem;
-          border-radius: 15px;
-          max-width: 500px;
-          width: 90%;
-          animation: scaleIn 0.3s ease;
-        `;
-        modalContent.innerHTML = content;
-        
-        modal.appendChild(modalContent);
-        document.body.appendChild(modal);
-        
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            this.closeModal(modal);
-          }
-        });
-        
-        return modal;
-      }
-
-      static closeModal(modal) {
-        modal.style.animation = 'fadeOut 0.3s ease';
-        setTimeout(() => modal.remove(), 300);
-      }
-
-      static createNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          padding: 1rem 2rem;
-          background: ${type === 'success' ? '#27ae60' : '#3498db'};
-          color: white;
-          border-radius: 10px;
-          z-index: 10000;
-          animation: slideInRight 0.3s ease;
-        `;
-        notification.textContent = message;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-          notification.style.animation = 'slideOutRight 0.3s ease';
-          setTimeout(() => notification.remove(), 300);
-        }, 3000);
-      }
-    }
-
-    // Initialize Enhanced Features
-    document.addEventListener('DOMContentLoaded', () => {
-      // Initialize components
-      const dataManager = new DataManager();
-      const animationController = new AnimationController();
-      
-      // Add advanced CSS animations
-      const advancedStyles = document.createElement('style');
-      advancedStyles.textContent = `
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes fadeOut {
-          from { opacity: 1; }
-          to { opacity: 0; }
-        }
-        
-        @keyframes scaleIn {
-          from { transform: scale(0.8); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
-        
-        @keyframes slideInRight {
-          from { transform: translateX(100%); }
-          to { transform: translateX(0); }
-        }
-        
-        @keyframes slideOutRight {
-          from { transform: translateX(0); }
-          to { transform: translateX(100%); }
-        }
-        
-        /* Advanced hover effects */
-        .service-card {
-          transform-style: preserve-3d;
-          transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-          transform: rotateY(5deg) rotateX(5deg) translateY(-10px);
-        }
-        
-        /* Glassmorphism effect */
-        .glass-effect {
-          background: rgba(255, 255, 255, 0.25);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        /* Gradient text */
-        .gradient-text {
-          background: var(--gradient-primary);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        
-        /* Pulse animation */
-        .pulse {
-          animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
-        }
-      `;
-      document.head.appendChild(advancedStyles);
-
-      // Enhanced service card functionality
-      document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const title = card.querySelector('h3').textContent;
-          const content = `
-            <h2>${title}</h2>
-            <p>詳細情報がここに表示されます。</p>
-            <button onclick="UIComponents.closeModal(this.closest('.modal'))">閉じる</button>
-          `;
-          UIComponents.createModal(content);
-        });
-      });
-
-      // Add interactive elements
-      setTimeout(() => {
-        document.querySelectorAll('.cta-button').forEach(btn => {
-          btn.classList.add('pulse');
-        });
-      }, 3000);
-    });
-
-    // Error Handling
-    window.addEventListener('error', (e) => {
-      console.error('Application error:', e.error);
-      UIComponents.createNotification('エラーが発生しました', 'error');
-    });
-
-    // Performance Monitoring
-    window.addEventListener('load', () => {
-      const loadTime = performance.now();
-      console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
-    });
-  </script>
-
-  <style>
-    /* Additional Modal Styles */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    @keyframes scaleIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-  </style>
+  <script src="script.js"></script>
 </body>
 </html>
