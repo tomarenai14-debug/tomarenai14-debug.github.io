@@ -151,18 +151,160 @@
       transform: translateY(0);
     }
 
-    /* Hero Section - More Dramatic */
+    /* Hero Section - Enhanced Slider */
     .hero {
       background: var(--gradient-main);
       color: white;
-      padding: 10rem 2rem 8rem;
-      text-align: center;
+      padding: 0;
       position: relative;
       overflow: hidden;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    /* Slider Container */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide.prev {
+      transform: translateX(-100%);
+    }
+
+    /* Background Images for Each Slide */
+    .slide[data-bg="slide1"] {
+      background: 
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80') center/cover;
+    }
+
+    .slide[data-bg="slide2"] {
+      background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+        url('https://images.unsplash.com/photo-1594736797933-d0c4c5e8a2da?w=1920&q=80') center/cover;
+    }
+
+    .slide[data-bg="slide3"] {
+      background: 
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+        url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&q=80') center/cover;
+    }
+
+    .slide[data-bg="slide4"] {
+      background: 
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+        url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=80') center/cover;
+    }
+
+    /* Slider Controls */
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 3rem;
+      transform: translateY(-50%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .slider-btn {
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(15px);
+      pointer-events: all;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+    }
+
+    .slider-btn:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .slider-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Slider Indicators */
+    .slider-indicators {
+      position: absolute;
+      bottom: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      z-index: 5;
+    }
+
+    .indicator {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .indicator:hover {
+      background: rgba(255,255,255,0.6);
+      transform: scale(1.1);
+    }
+
+    .indicator.active {
+      background: white;
+      transform: scale(1.3);
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+
+    /* Enhanced Hero Content */
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 2rem;
     }
 
     .hero::before {
@@ -800,18 +942,82 @@
     <!-- Home Page -->
     <div class="page-section active" id="home">
       <section class="hero">
-        <div class="floating-shapes">
-          <div class="shape"></div>
-          <div class="shape"></div>
-          <div class="shape"></div>
-        </div>
-        <div class="hero-content">
-          <h1>Olfact Fragrantia</h1>
-          <p class="subtitle">香りで心を動かす — また来たいと思わせる体験を創造する</p>
-          <div class="cta-buttons">
-            <a href="#" class="cta-button" data-route="services">サービス詳細</a>
-            <a href="#" class="cta-button secondary" data-route="contact">お問い合わせ</a>
+        <div class="slider-container">
+          <div class="slide active" data-bg="slide1">
+            <div class="floating-shapes">
+              <div class="shape"></div>
+              <div class="shape"></div>
+              <div class="shape"></div>
+            </div>
+            <div class="hero-content">
+              <h1>プロフェッショナル香りソリューション</h1>
+              <p class="subtitle">商業施設・ホテル・オフィス空間を香りで変革</p>
+              <div class="cta-buttons">
+                <a href="#" class="cta-button" data-route="services">サービス詳細</a>
+                <a href="#" class="cta-button secondary" data-route="contact">お問い合わせ</a>
+              </div>
+            </div>
           </div>
+          
+          <div class="slide" data-bg="slide2">
+            <div class="floating-shapes">
+              <div class="shape"></div>
+              <div class="shape"></div>
+              <div class="shape"></div>
+            </div>
+            <div class="hero-content">
+              <h1>匠の技術による香料調合</h1>
+              <p class="subtitle">自然素材と最新技術の融合で唯一無二の香りを創造</p>
+              <div class="cta-buttons">
+                <a href="#" class="cta-button" data-route="services">調合技術を見る</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide" data-bg="slide3">
+            <div class="floating-shapes">
+              <div class="shape"></div>
+              <div class="shape"></div>
+              <div class="shape"></div>
+            </div>
+            <div class="hero-content">
+              <h1>福利厚生で香りケア</h1>
+              <p class="subtitle">従業員のウェルビーイング向上と生産性アップを実現</p>
+              <div class="cta-buttons">
+                <a href="#" class="cta-button" data-route="services">導入相談</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide" data-bg="slide4">
+            <div class="floating-shapes">
+              <div class="shape"></div>
+              <div class="shape"></div>
+              <div class="shape"></div>
+            </div>
+            <div class="hero-content">
+              <h1>Olfact Fragrantia</h1>
+              <p class="subtitle">科学的根拠に基づく香りの力でビジネス価値を最大化</p>
+              <div class="cta-buttons">
+                <a href="#" class="cta-button" data-route="cases">導入事例を見る</a>
+                <a href="#" class="cta-button secondary" data-route="contact">無料相談</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- スライダーコントロール -->
+        <div class="slider-controls">
+          <button class="slider-btn prev" onclick="app.slider.prevSlide()">‹</button>
+          <button class="slider-btn next" onclick="app.slider.nextSlide()">›</button>
+        </div>
+        
+        <!-- スライダーインジケーター -->
+        <div class="slider-indicators">
+          <span class="indicator active" data-slide="0"></span>
+          <span class="indicator" data-slide="1"></span>
+          <span class="indicator" data-slide="2"></span>
+          <span class="indicator" data-slide="3"></span>
         </div>
       </section>
 
@@ -993,6 +1199,7 @@
         this.currentPage = 'home';
         this.isLoading = true;
         this.animations = new Map();
+        this.slider = null;
         this.init();
       }
 
@@ -1012,6 +1219,8 @@
             loadingScreen.style.display = 'none';
             this.isLoading = false;
             this.animatePageLoad();
+            // Initialize slider after loading
+            this.slider = new SliderManager();
           }, 500);
         }, 2000);
       }
@@ -1101,6 +1310,11 @@
         const targetSection = document.getElementById(page);
 
         if (currentSection && targetSection && currentSection !== targetSection) {
+          // Pause slider when leaving home page
+          if (this.currentPage === 'home' && this.slider) {
+            this.slider.stopAutoPlay();
+          }
+          
           // Fade out current page with slide effect
           currentSection.style.opacity = '0';
           currentSection.style.transform = 'translateX(-50px) scale(0.95)';
@@ -1114,6 +1328,11 @@
               targetSection.style.opacity = '1';
               targetSection.style.transform = 'translateX(0) scale(1)';
               targetSection.classList.add('page-transition');
+              
+              // Resume slider when returning to home page
+              if (page === 'home' && this.slider) {
+                this.slider.startAutoPlay();
+              }
               
               // Trigger scroll animations for new page
               this.triggerScrollAnimations();
@@ -1134,6 +1353,302 @@
 
       // Enhanced Scroll Animations
       setupScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.15,
+          rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animated');
+              this.createScrollEffect(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+          observer.observe(el);
+        });
+      }
+
+      createScrollEffect(element) {
+        // Add particle effect on scroll reveal
+        if (element.classList.contains('service-card') || element.classList.contains('case-card')) {
+          this.addSparkleEffect(element);
+        }
+      }
+
+      addSparkleEffect(element) {
+        for (let i = 0; i < 5; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--highlight);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1.5s ease-out forwards;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            z-index: 10;
+          `;
+          
+          element.style.position = 'relative';
+          element.appendChild(sparkle);
+          
+          setTimeout(() => sparkle.remove(), 1500);
+        }
+      }
+
+      triggerScrollAnimations() {
+        setTimeout(() => {
+          const activeSection = document.querySelector('.page-section.active');
+          const animatedElements = activeSection.querySelectorAll('.animate-on-scroll');
+          
+          animatedElements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add('animated');
+            }, index * 150);
+          });
+        }, 200);
+      }
+
+      // Enhanced Interactive Features
+      initializeEnhancedFeatures() {
+        this.setupCardInteractions();
+        this.setupDynamicEffects();
+        this.initializePerformanceMonitoring();
+      }
+
+      setupCardInteractions() {
+        document.querySelectorAll('.service-card, .case-card').forEach(card => {
+          // 3D hover effect
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            const rotateX = (y - 0.5) * 10;
+            const rotateY = (x - 0.5) * -10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+          });
+
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+          });
+
+          // Click ripple effect
+          card.addEventListener('click', (e) => {
+            this.createRippleEffect(e, card);
+          });
+        });
+      }
+
+      createRippleEffect(e, element) {
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const ripple = document.createElement('div');
+        ripple.style.cssText = `
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: rgba(52, 152, 219, 0.4);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: ripple 0.8s ease-out;
+          left: ${x}px;
+          top: ${y}px;
+          pointer-events: none;
+          z-index: 100;
+        `;
+        
+        element.style.position = 'relative';
+        element.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 800);
+      }
+
+      setupDynamicEffects() {
+        // Enhanced dynamic effects
+        this.animateGradients();
+      }
+
+      animateGradients() {
+        // Subtle gradient animation for enhanced visual appeal
+        const gradientElements = document.querySelectorAll('.slide');
+        let hue = 0;
+        
+        setInterval(() => {
+          hue = (hue + 0.5) % 360;
+          gradientElements.forEach(el => {
+            if (el.classList.contains('active')) {
+              el.style.filter = `hue-rotate(${hue * 0.05}deg) brightness(1.02)`;
+            }
+          });
+        }, 100);
+      }
+
+      initializePerformanceMonitoring() {
+        // Monitor and optimize performance
+        const observer = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            if (entry.entryType === 'measure') {
+              console.log(`Performance: ${entry.name} took ${entry.duration}ms`);
+            }
+          });
+        });
+        
+        if ('PerformanceObserver' in window) {
+          observer.observe({ entryTypes: ['measure'] });
+        }
+      }
+    }
+
+    // Advanced Slider Manager
+    class SliderManager {
+      constructor() {
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.slide');
+        this.indicators = document.querySelectorAll('.indicator');
+        this.autoPlayInterval = null;
+        this.isPlaying = true;
+        this.init();
+      }
+
+      init() {
+        if (this.slides.length === 0) return;
+        this.setupIndicators();
+        this.setupKeyboardControls();
+        this.setupTouchControls();
+        this.startAutoPlay();
+      }
+
+      setupIndicators() {
+        this.indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            this.goToSlide(index);
+          });
+        });
+      }
+
+      setupKeyboardControls() {
+        document.addEventListener('keydown', (e) => {
+          if (document.querySelector('#home.active')) {
+            if (e.key === 'ArrowLeft') {
+              this.prevSlide();
+            } else if (e.key === 'ArrowRight') {
+              this.nextSlide();
+            }
+          }
+        });
+      }
+
+      setupTouchControls() {
+        let startX = 0;
+        let startY = 0;
+        
+        const heroSection = document.querySelector('.hero');
+        
+        heroSection.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+        });
+
+        heroSection.addEventListener('touchend', (e) => {
+          const endX = e.changedTouches[0].clientX;
+          const endY = e.changedTouches[0].clientY;
+          const diffX = startX - endX;
+          const diffY = Math.abs(startY - endY);
+          
+          // Only trigger if horizontal swipe is more significant than vertical
+          if (Math.abs(diffX) > 50 && diffY < 100) {
+            if (diffX > 0) {
+              this.nextSlide();
+            } else {
+              this.prevSlide();
+            }
+          }
+        });
+      }
+
+      goToSlide(index) {
+        if (index === this.currentSlide) return;
+        
+        // Remove active class from all slides and indicators
+        this.slides.forEach(slide => slide.classList.remove('active', 'prev'));
+        this.indicators.forEach(indicator => indicator.classList.remove('active'));
+
+        // Add prev class to current slide
+        if (this.slides[this.currentSlide]) {
+          this.slides[this.currentSlide].classList.add('prev');
+        }
+
+        // Update current slide
+        this.currentSlide = index;
+
+        // Add active class to new slide and indicator
+        this.slides[this.currentSlide].classList.add('active');
+        this.indicators[this.currentSlide].classList.add('active');
+
+        // Add slide transition effect
+        this.addSlideEffect();
+        this.restartAutoPlay();
+      }
+
+      addSlideEffect() {
+        const activeSlide = this.slides[this.currentSlide];
+        const content = activeSlide.querySelector('.hero-content');
+        
+        // Reset and trigger animation
+        content.style.animation = 'none';
+        setTimeout(() => {
+          content.style.animation = 'slideContentIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both';
+        }, 10);
+      }
+
+      nextSlide() {
+        const nextIndex = (this.currentSlide + 1) % this.slides.length;
+        this.goToSlide(nextIndex);
+      }
+
+      prevSlide() {
+        const prevIndex = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.goToSlide(prevIndex);
+      }
+
+      startAutoPlay() {
+        if (!this.isPlaying) return;
+        this.autoPlayInterval = setInterval(() => {
+          this.nextSlide();
+        }, 6000); // 6秒ごとに自動切り替え
+      }
+
+      stopAutoPlay() {
+        if (this.autoPlayInterval) {
+          clearInterval(this.autoPlayInterval);
+        }
+      }
+
+      pauseAutoPlay() {
+        this.isPlaying = false;
+        this.stopAutoPlay();
+      }
+
+      resumeAutoPlay() {
+        this.isPlaying = true;
+        this.startAutoPlay();
+      }
+
+      restartAutoPlay() {
+        this.stopAutoPlay();
+        this.startAutoPlay();
+      }
+    } {
         const observerOptions = {
           threshold: 0.15,
           rootMargin: '0px 0px -100px 0px'
@@ -1372,6 +1887,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       const app = new FragranceApp();
       
+      // Make app globally accessible for slider controls
+      window.app = app;
+      
       // Add enhanced CSS animations
       const enhancedStyles = document.createElement('style');
       enhancedStyles.textContent = `
@@ -1381,6 +1899,351 @@
             opacity: 0;
           }
         }
+        
+        @keyframes sparkle {
+          0% {
+            transform: scale(0) rotate(0deg);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1) rotate(180deg);
+            opacity: 0.8;
+          }
+          100% {
+            transform: scale(0) rotate(360deg);
+            opacity: 0;
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        /* Slider-specific animations */
+        @keyframes slideContentIn {
+          0% {
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes slideOut {
+          from {
+            opacity: 1;
+            transform: translateX(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(-100%);
+          }
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+          from { opacity: 1; }
+          to { opacity: 0; }
+        }
+        
+        @keyframes scaleIn {
+          from { transform: scale(0.8); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+          from { transform: translateX(100%); }
+          to { transform: translateX(0); }
+        }
+        
+        @keyframes slideOutRight {
+          from { transform: translateX(0); }
+          to { transform: translateX(100%); }
+        }
+        
+        /* Enhanced hover effects */
+        .service-card, .case-card {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover, .case-card:hover {
+          box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        
+        /* Smooth page transitions */
+        .page-section {
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Glass effect enhancement */
+        .glass-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+          border-radius: inherit;
+          pointer-events: none;
+        }
+        
+        /* Interactive button states */
+        .cta-button {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .cta-button:active {
+          transform: translateY(-2px) scale(0.98);
+        }
+        
+        /* Advanced typography */
+        .hero h1 {
+          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        /* Micro-interactions */
+        .nav-link {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        .nav-link:hover::after {
+          left: 100%;
+        }
+        
+        /* Slider pause on hover */
+        .hero:hover .slider-controls {
+          opacity: 1;
+        }
+        
+        .slider-controls {
+          opacity: 0.7;
+          transition: opacity 0.3s ease;
+        }
+        
+        /* Mobile slider adjustments */
+        @media (max-width: 768px) {
+          .slider-controls {
+            padding: 0 1rem;
+          }
+          
+          .slider-btn {
+            width: 45px;
+            height: 45px;
+            font-size: 1.4rem;
+          }
+          
+          .slider-indicators {
+            bottom: 2rem;
+          }
+          
+          .indicator {
+            width: 12px;
+            height: 12px;
+          }
+          
+          .hero h1 {
+            font-size: 2.2rem;
+          }
+          
+          .hero .subtitle {
+            font-size: 1.1rem;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .slider-controls {
+            padding: 0 0.5rem;
+          }
+          
+          .slider-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+          }
+          
+          .hero h1 {
+            font-size: 1.8rem;
+          }
+          
+          .cta-buttons {
+            gap: 0.5rem;
+          }
+          
+          .cta-button {
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+          }
+        }
+      `;
+      document.head.appendChild(enhancedStyles);
+
+      // Handle initial route
+      const initialRoute = window.location.hash.slice(1) || 'home';
+      setTimeout(() => {
+        app.navigateTo(initialRoute, false);
+      }, 100);
+
+      // Add enhanced interactions
+      setTimeout(() => {
+        // Initialize advanced features after load
+        app.initializeEnhancedFeatures();
+      }, 2500);
+    });
+
+    // Enhanced Service Card Click Handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.service-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const title = card.querySelector('h3').textContent;
+            
+            // Create enhanced modal with service details
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0,0,0,0.8);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              z-index: 10000;
+              animation: fadeIn 0.4s ease;
+              backdrop-filter: blur(5px);
+            `;
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+              background: white;
+              padding: 3rem;
+              border-radius: 25px;
+              max-width: 600px;
+              width: 90%;
+              animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow: 0 30px 100px rgba(0,0,0,0.3);
+              position: relative;
+              overflow: hidden;
+            `;
+            
+            modalContent.innerHTML = `
+              <div style="text-align: center;">
+                <h2 style="font-size: 2rem; margin-bottom: 1rem; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${title}</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem; line-height: 1.6;">このサービスの詳細情報とカスタマイズオプションについてお問い合わせください。専門スタッフが最適なソリューションをご提案いたします。</p>
+                <button onclick="this.closest('.modal-overlay').remove()" style="background: var(--gradient-main); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; cursor: pointer; font-weight: 600; transition: var(--transition);">閉じる</button>
+              </div>
+            `;
+            
+            modal.className = 'modal-overlay';
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+            
+            modal.addEventListener('click', (e) => {
+              if (e.target === modal) {
+                modal.remove();
+              }
+            });
+          });
+        });
+
+        // Setup slider pause on hover
+        const hero = document.querySelector('.hero');
+        if (hero) {
+          hero.addEventListener('mouseenter', () => {
+            if (window.app && window.app.slider) {
+              window.app.slider.pauseAutoPlay();
+            }
+          });
+          
+          hero.addEventListener('mouseleave', () => {
+            if (window.app && window.app.slider) {
+              window.app.slider.resumeAutoPlay();
+            }
+          });
+        }
+      }, 1000);
+    });
+
+    // Error Handling with User Feedback
+    window.addEventListener('error', (e) => {
+      console.error('Application error:', e.error);
+      const errorNotification = document.createElement('div');
+      errorNotification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #e74c3c;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+      `;
+      errorNotification.textContent = 'エラーが発生しました。ページを更新してください。';
+      document.body.appendChild(errorNotification);
+      
+      setTimeout(() => {
+        errorNotification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => errorNotification.remove(), 300);
+      }, 5000);
+    });
+
+    // Performance Optimization
+    window.addEventListener('load', () => {
+      const loadTime = performance.now();
+      console.log(`✨ Page loaded in ${loadTime.toFixed(2)}ms`);
+      
+      // Preload next page resources
+      setTimeout(() => {
+        const links = document.querySelectorAll('[data-route]');
+        links.forEach(link => {
+          const route = link.getAttribute('data-route');
+          const section = document.getElementById(route);
+          if (section && !section.classList.contains('preloaded')) {
+            section.classList.add('preloaded');
+          }
+        });
+      }, 3000);
+    });
         
         @keyframes sparkle {
           0% {
